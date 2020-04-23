@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易严选</title>
+  <link rel="stylesheet" href="../day05/css//common.css">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_1748703_y0t0wfvyc6d.css">
+  <style>
+    /* 对于当前项目中所有的网页都适用 */
+    /* 1. 重置样式 */
+    body {
+      font: 12px "Microsoft Yahei","微软雅黑",verdana;
+      color: #333333;
+    }
+    body,ul,ol,p,h1,h2,h3 {
+      margin: 0;
+      padding: 0;
+    }
+    ul ,ol{
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: #333333;
+    }
+    /* 2.公共样式 */
+    .wrapper {
+      width: 1090px;
+      margin: 0 auto;
+    }
+    .f_left {
+      float:left;
+    }
+    .f_right {
+      float: right;
+    }
+    .f_clear {
+      clear: both;
+    }
+
+    .icon {
+      display: inline-block;
+      margin: 0 6px;
+    }
+    .btn {
+      display: inline-block;
+    }
+
+
+    html {
+      font-size: 38px;
+    }
+    
+    .content {
+      background-color: #f4f4f4;
+      height: 5000px;
+    }
+    /* 底部导航 */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 1.30667rem;
+      background-color: #ffffff;
+    }
+    .footer > ul {
+      height: 100%;
+      display: flex;
+      padding: .5em;
+    }
+    .footer > ul > li {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer > ul > li.current{
+      color:#DD1A21
+    }
+    .footer > ul > li .iconfont {
+      font-size: 18px;
+    }
+
+    /* 顶部 */
+    .header {
+      position: fixed;
+      height: 68px;
+      width: 100%;
+      background-color: #ffffff;
+      border-bottom: 1px solid #efefef;
+    }
+    .search_bar {
+      padding:.5em 1em;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .search_bar > .logo{
+      width: 2rem;
+      font-size: 16px;
+      font-family: '宋体';
+    }
+    .search_bar > .search_box{
+      flex-grow: 1;
+      background-color: #ededed;
+      border-radius: 3px;
+      padding:.5em 1em;
+
+    }
+    .search_bar > .search_box input {
+      width: 90%;
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+    }
+    .search_bar > .btn_login{
+      width: 1rem;
+      text-align: center;
+      border: 1px solid #DD1A21;
+      color: #DD1A21;
+      border-radius: 3px;
+      margin-left: .5em;
+      line-height: 1.5em;
+      height: 1.5em;
+    }
+
+    .nav_wrapper {
+      position: relative;
+    }
+    .nav_wrapper > .nav {
+      flex-grow: 1;
+      overflow: hidden;
+      margin-right: 2.5rem;
+    }
+    .nav_wrapper > .nav > ul {
+      width: 1600px;
+    }
+    .nav_wrapper > .nav > ul::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .nav_wrapper > .nav > ul > li {
+      float: left;
+      padding: 0 1.3em;
+    }
+    .nav_wrapper >.toggle {
+      width: 2rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #ffffff;
+    }
+
+    /* 中间内容 */
+      /* 滚动图片 */
+      .bigimg {
+        display: flex;
+      }
+      .bigimg img {
+        width: 100%;
+        height: 100%;
+      }
+      /* 特权介绍 */
+      .tequan {
+        padding-top: 10px;
+      }
+      .tequan > ul {
+        display: flex;
+      }
+      .tequan > ul > li {
+        text-align: center;
+        flex-grow: 1;
+      }
+      /* 分类查询 */
+      .categray {
+
+      }
+      .categray ul {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .categray ul> li {
+        display: flexbox;
+        width: 20%;
+        padding-bottom: 20px;
+        text-align: center;
+      }
+      .categray ul li span {
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+      .categray ul > li img {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* 好物 */
+      .haowu {
+        width: 100%;
+        margin-top: 20px;
+        height: auto;
+      }
+      .haowu  img {
+        width: 100%;
+        height: 100%;
+      }
+      /* 加购福利 */
+      .fuli{
+        margin-top: 10pxpx;
+      }
+      .fuli ul{
+        display: flex;
+      }
+      .fuli ul > li{
+        display: flex;
+        flex-basis: 40%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-grow: 1;
+      }
+      .fuli ul > li >img{
+        width: 100%;
+        height: 100%;
+      }
+      /*新人福利*/
+      .xinren{
+        
+      }
+      .xinren_1{
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 1.8em;
+      }
+      .xinren_2{
+        display: flex;
+      }
+      .xinren_2 ul{
+        display: flex;
+      }
+      .xinren_2 ul > li:first-child{
+        flex-basis: 40%;
+        flex-grow: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color:#F9E9CF;
+        font-size: 1.6em;
+        text-align: center;
+      }
+      .xinren_2 ul > li:first-child >img{
+        width: 80%;
+        height: 80%;
+      }
+      .xinren_2 ul > li{
+        flex-basis: 40%;
+        flex-grow: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color:#F9E9CF;
+        font-size: 1.6em;
+        text-align: center;
+      }
+      .xinren_2 ul > li>img{
+        width: 80%;
+        height: 80%;
+      }
+      /* 类目热销榜 */
+      .hot_wapper {
+        margin-top: 30px;
+        background-color: white;
+      }
+      .hot_wapper .hot_title {
+        font-size: large;
+        font-family: '微软雅黑';
+        margin: 10px 10px;
+      }
+      .hot_wapper ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items:flex-start
+      }
+      .hot_wapper ul > li {
+        background-color: #f5f5f5;
+        margin: 2% 2%;
+        width: 20%;
+        flex-grow: 1;
+        text-align: center;
+      }
+      .hot_wapper ul > li:first-child,
+      .hot_wapper ul > li:nth-child(2){
+        background-color: #f9f3e4;
+        display: flex;
+        flex-grow: 1;
+        margin:2% 5%;
+        width: 40%;
+      }
+      .hot_wapper ul > li:first-child .one,
+      .hot_wapper ul > li:nth-child(2) .one{
+        width: 50%;
+        line-height: 90px;
+      }
+      .hot_wapper ul > li img {
+        width: 80%;
+        height: 80%;
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <!-- 首行 -->
+      <div class="search_bar">
+        <a href="" class="logo">网易严选</a>
+        <div class="search_box">
+          <input type="text">
+        </div>
+        <div class="btn_login">登录</div>
+      </div>
+      <!-- 导航 -->
+      <div class="nav_wrapper">
+        <div class="nav">
+          <ul>
+            <li><a href="">推荐</a></li>
+            <li><a href="">居家生活</a></li>
+            <li><a href="">服饰鞋包</a></li>
+            <li><a href="">美食酒水</a></li>
+            <li><a href="">母婴亲自</a></li>
+            <li><a href="">运动履行</a></li>
+            <li><a href="">数码家电</a></li>
+            <li><a href="">全球特色</a></li>
+          </ul>
+        </div>
+        <div class="toggle">
+          ^
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="bigimg">
+        <img src="imgs/m-bigimg.png" alt="">
+      </div>
+      <div class="tequan">
+        <ul>
+          <li>网易自营品牌</li>
+          <li>30天无忧退换</li>
+          <li>48小时快速退款</li>
+        </ul>
+      </div>
+      <div class="categray">
+        <ul>
+          <li><a href=""><span><img src="imgs/xinpin.png" alt=""></span><span>新品首发</span></a></li>
+          <li><a href=""><span><img src="imgs/jujia.png" alt=""></span><span>居家生活</span></a></li>
+          <li><a href=""><span><img src="imgs/fushi.png" alt=""></span><span>服饰鞋包</span></a></li>
+          <li><a href=""><span><img src="imgs/meishi.png" alt=""></span><span>美食酒水</span></a></li>
+          <li><a href=""><span><img src="imgs/qingjie.png" alt=""></span><span>个护清洁</span></a></li>
+          <li><a href=""><span><img src="imgs/muying.png" alt=""></span><span>母婴亲子</span></a></li>
+          <li><a href=""><span><img src="imgs/yundong.png" alt=""></span><span>运动旅行</span></a></li>
+          <li><a href=""><span><img src="imgs/shuma.png" alt=""></span><span>数码家电</span></a></li>
+          <li><a href=""><span><img src="imgs/quanqiu.png" alt=""></span><span>全球特色</span></a></li>
+          <li><a href=""><span><img src="imgs/haohuo.gif" alt=""></span><span>好货抄底</span></a></li>
+        </ul>
+      </div>
+
+      <!--0元领好物-->
+      <div class="haowu">
+       <img src="./imgs/xinren.gif" alt="">
+      </div>
+      <!-- 加购福利 -->
+     <div class="fuli">
+       <ul>
+         <li><img src="./imgs/kouzhao.png" alt=""></li>
+         <li><img src="./imgs/45yuan.png" alt=""></li>
+       </ul>
+     </div>
+    <!--新人福利-->
+     <div class="xinren">
+       <div class="xinren_1"><span>——新人专享礼——</span>
+       </div>
+       <div class="xinren_2">
+         <ul>
+           <li><span>新人专享礼包</span>
+             <img src="./imgs/15.png" alt="">
+           </li>
+           <li>
+             <span>新人专享礼包</span>
+            <img src="./imgs/15.png" alt="">
+           </li>
+         </ul>
+       </div>
+     </div>
+     <!-- 类目热销榜 -->
+     <div class="hot_wapper">
+      <div class="hot_title">类目热销榜</div> 
+      <ul>
+        <li>
+          <div class="one"><span>热销榜 </span></div>
+          <div class="hot_img"><img src="https://yanxuan-item.nosdn.127.net/74662d24f6d217b520178c5a6d031457.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+           <div class="one"><span>好评榜 </span></div>
+           <div class="hot_img"><img src="https://yanxuan-item.nosdn.127.net/8224171cf2701207ed8f2c2f2b36aa90.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+       
+        <li>
+         <div class="one_2"><span>美食酒水榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/eb5aaec3178da93222aeca4b7fcaf757.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>居家生活榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/644a27b8e168b8fe8e43ccaad934b24e.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>个护清洁榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/5414fd12666d07a29262806f343f0f20.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>服饰鞋包榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/fee21ece834e9c2706e53d86e65b8abb.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>全球特色榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/05b82f4f46da9dc58dc873b365598292.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>数码家电榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/a517938254c7d2f480827debf355127a.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>母婴亲子榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/f444ac11115a8249a92dc95dccad6e07.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+        <li>
+         <div class="one_2"><span>运动旅行榜 </span></div>
+         <div class="hot_img_2"><img src="https://yanxuan-item.nosdn.127.net/9bd9a7f5e71a42fc38b54163aab1ecb8.png?quality=75&type=webp&imageView&thumbnail=200x200" alt=""></div>
+        </li>
+      </ul>
+ </div>
+
+
+
+    <div class="footer">
+      <ul>
+        <li class="current">
+          <span class="iconfont icon-icon_alipay_line"></span>
+          <span>首页</span>
+        </li>
+        <li>
+          <span class="iconfont icon-icon_addresslist"></span>
+          <span>分类</span>
+        </li>
+        <li>
+          <span class="iconfont icon-icon_addmessage"></span>
+          <span>值得买</span>
+        </li>
+        <li>
+          <span class="iconfont icon-icon_at"></span>
+          <span>购物</span>
+        </li>
+        <li>
+          <span class="iconfont icon-icon_boss"></span>
+          <span>我的</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
