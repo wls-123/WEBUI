@@ -1,0 +1,7 @@
+/* pages/login/login.wxss */
+.weui-input {
+  border: 1rpx solid #333;
+  margin: 10rpx;
+  height: 85rpx;
+  border-radius: 10rpx;
+}

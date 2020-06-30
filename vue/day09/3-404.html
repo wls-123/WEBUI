@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态路由匹配</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+    <!-- 引入路由 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/3.2.0/vue-router.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+     
+      <h1>Hello App!</h1>
+      <p>
+ 
+        <router-link to="/category">栏目管理</router-link>
+        <router-link to="/articles/1">文章管理</router-link>
+        <router-link to="/articles/2">文章管理</router-link>
+      </p>
+    
+      <router-view></router-view>
+    </div>
+
+    <script>
+        let Articles = {
+          template:`<div>文章管理页面</div>`
+        }
+        let Category = {
+          template:`<div>栏目管理页面</div>`
+        }
+        let Default = {
+          template:`<div>404页面</div>`
+        }
+        // 定义路由
+        let router = new VueRouter({
+          routes:[{
+            path:'/category',
+            component:Category
+          },{
+            path:'/articles/:id',
+            component:Articles
+          },{
+          path:'*',
+          component:Default
+        }]
+        })
+        new Vue({
+            el: '#app',
+            router:router,
+            data() {
+                return {
+
+                }
+            },
+            methods:{
+             
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 600px;
+      height: 150px;
+      border: 1px solid #444444;
+    }
+    div ul {
+     // list-style: none;
+      display: flex;
+    }
+    div ul li{
+      width: 100px;
+      height: 100px;
+      border: 1px solid #333;
+      margin-right: 20px;
+    }
+  </style>
+  <script>
+    window.onload = function(){
+      var ul = document.getElementsByTagName('ul')[0];
+     ul.onmouseenter = function(){
+        event.target.style.backgroundColor = 'red';
+        console.log(event.target);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+</html>

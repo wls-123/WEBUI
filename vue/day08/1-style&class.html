@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>样式与类名绑定</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <!-- 形式：对象、字符串、数组 -->
+     <div :style='style3' :class='class1'>hello vue</div>
+    </div>
+    <script>
+       
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                style1:{
+                  color:'red',
+                 'background-color':'#ccc'
+                },
+                class1:{
+                  article:true,
+                  one:true
+                },
+                style2:'font-size:25px;color:yellow;',
+                style3:[{
+                  color:'#ffe',
+                },{
+                 'background-color':'#ccc'
+                }]
+             }
+            },
+            methods:{
+             
+            }
+        })
+    </script>
+</body>
+
+</html>

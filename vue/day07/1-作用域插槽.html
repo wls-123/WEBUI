@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域插槽</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <wls-div :data='category'>
+        <template v-slot:list='slot'>
+          <div>{{slot.scope.id}}</div>
+          <div>{{slot.scope.name}}</div>
+          <div>{{slot.scope.comment}}</div>
+        </template>
+      </wls-div>
+      
+    </div>
+    <script>
+        // 全局注册
+        Vue.component('wls-div',{
+          template:`
+            <div>
+             <ul>
+              <li v-for='item in data'>
+                <slot name='list' :scope='item'></slot>
+              </li>
+             </ul>
+            </div>
+          `,
+          props:{
+            data:Array
+          }
+        })
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                  category:[{
+                    id:1,
+                    name:'军事',
+                    comment:'军事天地'
+                  },{
+                    id:2,
+                    name:'科技',
+                    comment:'科技改变未来'
+                  },{
+                    id:3,
+                    name:'历史',
+                    comment:'以史为鉴'
+                  }]
+                }
+            },
+            methods: {
+             
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+<view class="login">
+  <input bindinput='nameHandler' class="weui-input" auto-focus placeholder="请输入用户名"/>
+  <input bindinput='pwdHandler' password='true' class="weui-input" auto-focus placeholder="请输入密码"/>
+  <button bindtap="loginHandler" type="primary">登录</button>
+</view>

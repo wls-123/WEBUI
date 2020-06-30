@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图像平铺</title>
+  <script>
+    window.onload = function(){
+        // 1、获取canvas对象
+        var canvas = document.getElementById('canvas');
+        // 2、获取2d上下文
+        var context = canvas.getContext('2d');
+        // 3、 创建图像,并设置地址
+        var image = new Image();
+        image.src = 'imgs/jujia2.png';
+        // 4、 绘制图像,加载事件
+        image.onload = function(){
+          //创建平铺对象
+          //var pattern = context.createPattern(image, 'repeat');
+          var pattern = context.createPattern(image, 'repeat-x');
+          //平铺对象的使用
+          context.fillStyle = pattern;
+          //绘制矩形
+          context.fillRect(0,0,600,600);
+          
+   
+        }
+  
+    }
+</script>
+</head>
+<body>
+  <canvas id="canvas" width="600px" height="400px" style="border: 1px solid #333;"></canvas>
+  
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片</title>
+   <!-- 引入css -->
+   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+   <!-- 引入jQuery -->
+   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+   <!-- 引入js -->
+   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.js"></script> 
+</head>
+<body>
+  <!-- 外边框 -->
+  <img src="imgs/logo.jpg" class='img-thumbnail' alt="">
+  <!-- 圆角  左右浮动 -->
+  <img src="imgs/xingping.png" class="rounded float-left" alt="...">
+  <img src="imgs/xingping.png" class="rounded float-right" alt="...">
+  <!-- 水平居中 只有当元素为块级元素或者行内块级元素的时候， margin:auto；才生效 -->
+  <img src="imgs/xingping.png" class="rounded mx-auto d-block" alt="...">
+  <!-- img元素在父元素中水平居中 -->
+  <div class="text-center">
+    <img src="imgs/logo.jpg" class="rounded" alt="...">
+  </div>
+</body>
+<style>
+  img {
+    width: 200px;
+  }
+</style>
+</html>

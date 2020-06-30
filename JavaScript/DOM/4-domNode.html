@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点操作</title>
+  <script>
+    window.onload = function(){
+      //获取父节点
+      var parentNode = document.getElementsByTagName('div')[0];
+      //获取a标签
+      var a = document.getElementById('a')
+      //创建一个新节点
+      var newNode = document.createElement('div');
+      newNode.innerHTML = 'world';
+      //拼接新增节点
+      parentNode.appendChild(newNode);
+
+      //克隆标签
+      //var newA = a.cloneNode();//浅克隆，只复制
+      var newA = a.cloneNode(true);//深克隆，复制标签的所有内容
+      parentNode.appendChild(newA);
+    }
+  </script>
+</head>
+<body>
+  <div>hello</div>
+  <a href="" id='a'>这是一个标签</a>
+</body>
+</html>

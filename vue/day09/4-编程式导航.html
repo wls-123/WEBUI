@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编程式导航</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+    <!-- 引入路由 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/3.2.0/vue-router.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+      <!-- 通过事件实现路由的跳转 -->
+      <button @click='toCategory'>栏目管理</button>
+      <button @click='toArticle'>文章管理</button>
+      <button @click='$router.go(-1)'>回退</button>
+      <router-view></router-view>
+    </div>
+
+    <script>
+        let Articles = {
+          template:`<div @click='reloadPage'>文章管理页面</div>`,
+          methods:{
+            reloadPage(){
+            //  location.reload();
+            this.$router.go(0)
+            }
+          }
+        }
+        let Category ={
+          template:`<div>栏目管理页面</div>`
+        }
+        let router = new VueRouter({
+          routes:[{
+            path:'/category',
+            component:Category
+          },{
+            path:'/articles',
+            component:Articles
+          }]
+        })
+        new Vue({
+            el: '#app',
+            router,
+            data() {
+                return {
+
+                }
+            },
+            methods:{
+              toCategory(){
+               // this.$router.push('category')
+                this.$router.push({
+                  path:'category'
+                })
+              },
+              toArticle(){
+                this.$router.push('articles')
+
+              }
+            }
+        })
+    </script>
+</body>
+
+</html>

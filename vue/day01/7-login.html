@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <!-- 引入vue -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+  <!-- 引入axios -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div v-if='token'>
+      你好：{{username}}
+      <a href="javascript:void(0);" v-on:click='logout'>退出</a>
+    </div>
+    <div v-else>
+      <a href="" v-on:click.prevent='login'>登录</a>
+      <a href="">没有账号？请注册</a>
+    </div>
+  </div>
+  <script>
+    // vue的JS代码
+    let vm = new Vue({
+      // 绑定模板
+      el: "#app",
+      data() {
+        return {
+          token: !localStorage.getItem,
+          username: this.username
+        }
+      },
+      //页面加载
+      created(){
+        if(this.token){
+          this.token = this.token;
+        }
+      },
+      methods: {
+        login() {
+          let obj = {
+            username: 'james',
+            password: 'james123'
+          }
+
+          axios.post('http://120.78.72.35:8099/manager/user/login', obj)
+            .then((res) => {
+              localStorage.setItem('token', res.data.data.token);
+              this.token = res.data.data.token;
+              this.username = obj.username;
+              console.log(this.username)
+            })
+
+        },
+
+        logout() {
+          axios.post('http://120.78.72.35:8099/manager/user/logout')
+            .then((res) => {
+              //localStorage.setItem('token',false);
+              this.token = '';
+              localStorage.clear();
+              // location.reload();
+            })
+        }
+
+      }
+    })
+
+  </script>
+</body>
+
+</html>

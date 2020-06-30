@@ -1,0 +1,32 @@
+<view class="home">
+  <!-- 轮播图 -->
+  <swiper class="showPicture" indicator-dots="true"
+    autoplay="true" interval="3000" duration="1000" circular='true'>
+    <block>
+      <swiper-item wx:for='{{imgArr}}' wx:key='id'>
+        <image src="{{item.url}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 文章 -->
+  <view class="article-item" wx:for='{{articles}}' wx:key='id'>
+    <!-- 文章作者 -->
+    <view class="user">
+      <image src="{{item.userImg}}"></image>
+      <view>{{item.username}}</view>
+    </view>
+
+    <!-- 文章内容 -->
+    <view class="article_detail">
+      <image src="{{item.articleImg}}"></image>
+      <view class="articleTitle">{{item.title}}</view>
+      <view class="publishTime">{{item.publishTime}}</view>
+      <view class="articleContent">{{item.content}}</view>
+      <view class="likeNum">{{item.likeNum}}</view>
+    </view>
+  </view>
+
+
+
+</view>

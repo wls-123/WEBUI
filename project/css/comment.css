@@ -1,0 +1,12 @@
+/* 去除圆点 */
+.comment #myTab li{
+  list-style: none;
+}
+/* 头部切换样式 */
+.nav-item a {
+  font-size: 16px;
+  text-decoration: none;
+}
+.list-group-item div{
+  display: inline-block;
+}

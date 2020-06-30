@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        num:{{num}}
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            beforeCreate(){
+                console.log('beforeCreate',this.num)
+                alert('beforeCreate')
+            },
+            created(){
+                console.log('created',this.num)
+                alert('created')
+            },
+            beforeMount(){
+                console.log('beforeMounte',this.num)
+                alert('beforeMount')
+            },
+            mounted(){
+                console.log('mounted',this.num)
+                alert('mounted')
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate',this.num)
+                alert('beforeUpdate')
+            },
+            updated(){
+                console.log('updated',this.num)
+                alert('updated')
+            },
+         /*   beforeDestroy(){
+                console.log('beforeDestroy',this.num)
+                alert('beforeDestroy')
+            },
+            destroy(){
+                console.log('destroy',this.num)
+                alert('destroy')
+            },
+        */
+            data(){
+                return {
+                    num:1
+                }
+            },
+        
+            
+        })
+        let time = setInterval(() => {
+            vm.num++;
+            if(vm.num == 7){
+                clearInterval(time);   
+            }
+        }, 2000);
+        
+    </script>
+</body>
+</html>

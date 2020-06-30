@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+      {{form}}
+        <form>
+          文章标题<input v-model.lazy="form.title" type="text" placeholder="请输入文章标题"><br>
+          所属栏目
+            <select name="" id="form.categoryId">
+              <option value="1">新闻</option>
+              <option value="2">体育</option>
+            </select><br>
+          文章样式
+            <label for="listOne">
+              <input v-model.number="form.liststyle" value="1" type="radio" id="listOne" name="listStyle">样式一
+            </label>
+            <label for="listTwo">
+              <input v-model="form.liststyle" value="2" type="radio" id="listTwo" name="listStyle">样式一
+            </label><br>
+            正文<textarea v-model="form.content" name="" id="" cols="30" rows="10"></textarea>
+            
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                  form:{
+                    categoryId:1,
+                    liststyle:1
+                  }
+                }
+            },
+            methods: {
+                  
+                }
+        })
+    </script>
+</body>
+
+</html>

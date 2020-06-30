@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据更新</title>
+  <!-- 引入vue -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+  <!-- 引入lodash -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{arr}}
+    {{msg}}
+    {{obj}}
+  </div>
+  <script>
+    // vue的JS代码
+    let vm = new Vue({
+      // 绑定模板
+      el: "#app",
+      data() {
+        return {
+          arr: [1, 2, 3, 4],
+          msg: 'hello',
+          obj:{
+            name:'tom',
+            age:22
+         }
+        }
+      },
+      methods:{
+        add(){
+          // this.obj.gender = 'male';
+          //this.$set(this.obj,'gender','male');
+          //this.obj = Object.assign({},this.obj,{city:'suzhou'})
+         this.obj = _.clone(this.obj)
+          console.log(this.obj);
+        }
+      }
+    })
+    /*
+    setInterval(() => {
+      let random = Math.floor(Math.random() * 10);
+      vm.msg += random;
+      vm.arr.push(random);
+
+      //vm.arr[vm.arr.length] = random;
+      console.log(vm.arr);
+    }, 2000)
+    */
+    vm.add();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,341 @@
+中大型项目
+    vueRouter + vuex + axios
+
+复习
+    1、渲染函数
+        render:function(createElement){
+            return createElement('div',{},this.msg)
+        }
+        1) 在vue项目中涉及到图表、地图，用render函数
+        2) 在mounted阶段才能获取到通过渲染函数创建出来的节点
+    2、style与class
+        style
+            <div :style='style'></div>
+            data(){
+                return {
+                    style:{
+                        color:'red',
+                        'font-size':'30px'
+                    }
+                }
+            }
+        class
+            <div :class='class'></div>
+            data(){
+                return {
+                    class:{
+                        one:true,
+                        two:false
+                    }
+                }
+            }
+学习
+    3、路由基础
+        1) 路由定义
+            企业级开发技术栈
+            web端：vue + vueRouter(路由) + vuex(状态机) + axios + element-ui
+            手机端：vue + vueRouter(路由) + vuex(状态机) + axios + vant
+
+            将组件 (components) 映射到路由 (routes)，然后告诉 Vue Router 在哪里渲染它们
+
+            路由(根据不同路由加载不同的组件)
+                一个路由对应一个组件
+                    /article  -->  Article.vue
+                    /category  -->  Category.vue
+            动态组件(根据组件名称加载不同的组件)
+                Article --> Article.vue
+                Category --> Category.vue
+        
+            1. 安装
+                1、script引入
+                    不适合企业级项目开发，但是适合研究学习
+                    <script src='vue.js'></script>
+                    <script src='vue-router.js'></script>
+                2、npm下载
+                    > vue create app01
+                3、通过vue插件
+                    > vue add router
+
+            2. 使用路由
+                参考1-路由入门.html
+                1、页面显示不出来，控制台也没报错，先检查路由的语法是否正确，其次再检查是否写了路由出口router-view
+                2、注入路由之后，就可以在任何组件中访问this.$router
+            
+        2) 动态路由匹配
+            一个组件可以对应多个路由
+            1. 声明
+                动态路径参数 以冒号开头
+                routes:[{
+                    path:'/article/:id',
+                    component:Articles
+                }]
+                Article是动态路由的组件
+
+            2. 动态路由匹配
+                <router-link to='/category'>栏目管理</router-link>
+                <router-link to='/article/1'>文章管理</router-link>
+                <router-link to='/article/2'>文章管理</router-link>
+                <router-link to='/article/3'>文章管理</router-link>
+
+
+                /article/1
+                /article/2      都对应同一个组件  --->  Article.vue
+                /article/3
+
+            3. 响应路由参数的变化
+                在使用动态路由的时候，切换组件时，组件只会被复用，意思是组件的生命周期钩子函数只会执行一次，所以可以使用如下两种方法进行参数的监听
+                方式一：监听$route对象
+                    let Articles = {
+                        template:`<div>文章管理页面</div>`,
+                        watch:{
+                            $route(to,from){
+                                console.log('from',from.params.id)
+                            }
+                        }
+                    }
+                方式二：beforeRouteUpdate
+                    let Articles = {
+                        template:`<div>文章管理页面</div>`,
+                        beforeRouteUpdate(to,from,next){
+                            console.log('from',from)
+                            next()
+                        }
+                    }
+        3) 匹配所有路由(应用在404)
+            为了防止用户输入的路由不是/category或者/article，需要给用户一个提示，即404页面
+            let Default = {
+                template:`<div>404页面</div>`
+            }
+            
+            routes:[{
+                path:'/category',
+                component:Category
+            },{
+                path:'/article',
+                component:Articles
+            },{
+                path:'*',
+                component:Default
+            }]
+
+        4) 编程式导航
+            除了使用 <router-link> 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现
+            注意：注入路由之后，就可以在任何组件中访问this.$router，然后就可以调用方法
+
+            1. this.$router.push()
+                跳转到指定的路由，这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL
+                参考：4-.html
+
+                this.$router.push()的参数
+                    字符串
+                        this.$router.push('article')
+                    对象
+                        this.$router.push({
+                            path:'category'
+                        })
+                    
+                    *参数为对象的时候，可以在路由上携带参数(路由参数方式一：通过path与query)
+                        传递参数：(this.$router.push)
+                            toArticle(){
+                                let articleId = 1;
+                                this.$router.push({
+                                    path:'article',
+                                    query:{articleId}
+                                })
+                            }
+                        接收参数：(this.$route.query)
+                            let Articles = {
+                                template:`<div>文章管理页面</div>`,
+                                created(){
+                                    console.log(this.$route.query.articleId)
+                                }
+                            }
+
+            2. this.$router.replace()
+                用法与this.$router.push几乎一致，唯一的不同就是它不会向 history 添加新记录，也就是用户无法点击浏览器的前进与后退按钮
+
+            3. this.$router.go(n)
+                在history记录里面前进或者后退n步，n为整数
+
+                this.$router.go(0)
+                    刷新页面
+                this.$router.go(-1)
+                    退到上一级路由
+
+        5) 命名路由
+            在路由定义的时候，可以给路由提供一个标识，可以用于传参
+            路由传参方式二：(name与params)
+                let router = new VueRouter({
+                    // 3、定义路由
+                    routes:[{
+                        name:'category',
+                        path:'/category',
+                        component:Category
+                    },{
+                        name:'article',
+                        path:'/article',
+                        component:Articles
+                    }]
+                })
+
+                toArticle(){
+                    let articleId = 1;
+                    this.$router.push({
+                        name:'article',
+                        params:{articleId}
+                    })
+                }
+
+                let Articles = {
+                    template:`<div>文章管理页面</div>`,
+                    created(){
+                        console.log(this.$route.params.articleId)
+                    }
+                }
+
+                传递参数：
+                    this.$router.push({
+                        name:'article',
+                        params:{articleId}
+                    })
+                接收参数：
+                    this.$route.params.articleId
+                使用此方式的前提必须是一个命名组件，参数不会显示在浏览器地址栏上(隐式传递)
+
+                传递参数：
+                    this.$router.push({
+                        path:'article',
+                        query:{articleId}
+                    })
+                接收参数：
+                    this.$route.query.articleId
+                参数会暴露在浏览器地址栏上(显示传递)
+        
+        6) 重定向
+            routes:[{
+                path:'/',
+                redirect:'/article'
+            },{
+                path:'/category',
+                component:Category
+            },{
+                path:'/article',
+                component:Articles
+            }]
+            当访问路由/的时候，会自动跳转到/article中
+            
+            重定向的也可以是命名路由：
+                routes:[{
+                    path:'/',
+                    redirect:{
+                        name:'category'
+                    }
+                },{
+                    name:'category',
+                    path:'/category',
+                    component:Category
+                },{
+                    path:'/article',
+                    component:Articles
+                }]
+                当访问路由/的时候，会自动跳转到/category中
+
+        7) 路由模式
+            1. hash模式 默认模式(带#)
+                http://www.baidu.com#/article1
+            2. history模式
+                http://www.baidu.com/article1
+
+            let router = new VueRouter({
+                // 定义路由的模式
+                mode:'history',
+                // 定义路由
+                routes:[{
+                    path:'/article',
+                    component:Articles
+                }]
+            })
+
+    4、路由进阶
+        1) 嵌套路由
+            参考:8-嵌套路由.html
+
+        2) 导航守卫
+            1. 组件内守卫 [声明在组件的实例对象中]
+                beforeRouteUpdate
+                    当进入该组件的时候,如果组件发生了参数的改变,会触发该守卫
+                    /article/1
+                    /article/2  --->  Article.vue
+                    /article/3
+                beforeRouteEnter
+                beforeRouteLeave
+
+            2. 全局守卫 [定义在router对象上]
+                let router = new VueRouter({
+                    routes:[{
+                        name:'category',
+                        path:'/category',
+                        component:Category
+                    },{
+                        path:'/article',
+                        component:Articles
+                    }]
+                })
+                router.beforeEach((to,from,next)=>{
+                    console.log('from',from)
+                    console.log('to',to)
+                    next()
+                })
+                在进入到/category和/article的时候,都会触发全局守卫
+
+                to: 即将要进入的目标 路由对象
+                from: 当前导航正要离开的路由
+                next: Function
+
+                案例:判断用户是否登录
+                    router.beforeEach((to,from,next)=>{
+                        let token = localStorage.getItem('token');
+                        if(token){
+                            //查询用户信息
+                            findMsg('user/info',token).then(()=>{
+                                next()
+                            })
+                        } else {
+                            //跳到登陆页面
+                            next({
+                                path:'/login'
+                            })
+                        }
+                    })
+
+            3. 路由独享守卫
+                routes:[{
+                    name:'category',
+                    path:'/category',
+                    component:Category
+                },{
+                    path:'/article',
+                    component:Articles,
+                    // 路由独享守卫
+                    beforeEnter:(to,from,next)=>{
+                        console.log('from',from)
+                        console.log('to',to)
+                        next()
+                    }
+                }]
+
+            4. 脚手架中使用vueRouter
+                方案一:(重新创建一个项目)
+                    > vue create app03
+                    手动选择manually select features
+                    选择babel + Router
+                    yes
+                    in package.json
+                    N
+
+                方案二:(通过vue插件安装路由)
+                    > vue add router
+                    首先将App.vue里面的内容复制出来
+                    
+
+                

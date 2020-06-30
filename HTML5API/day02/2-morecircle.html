@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = function(){
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+      context.fillStyle='red';
+      context.strokeStyle='blue';
+      context.lineWidth=4;
+
+      pathArc(context,0,90);
+      pathArc(context,90,180);
+      pathArc(context,180,270);
+      pathArc(context,270,360);
+
+      function pathArc(context,startAngle,endAngle){
+        context.beginPath();
+        context.arc(200, 200, 100, Math.PI / 180 * startAngle, Math.PI / 180 * endAngle)
+        context.closePath();
+        
+        context.fill();
+      }
+      
+    }
+  </script>
+</head>
+<body>
+  <canvas id="canvas" width="600px" height="400px" style="border: 1px solid #333;"></canvas>
+  
+</body>
+</html>

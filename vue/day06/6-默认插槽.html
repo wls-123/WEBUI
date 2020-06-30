@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>默认插槽</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <button @click='showAlert'>显示警告框</button>{{ifVisible}}
+      <!-- 组件的调用 -->
+      <wls-alert title='警告'>
+        <h1>你好</h1>
+      </wls-alert>
+      
+    </div>
+    <script>
+        // 全局注册
+        Vue.component('wls-alert',{
+          template:`
+            <div>
+              <slot></slot>
+              {{title}}
+            </div>
+            
+          `,
+          props:[
+            'title'
+          ],
+          methods:{
+           
+          },
+          data(){
+            return{
+            } 
+          }
+        })
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                  
+                }
+            },
+            methods: {
+             
+            }
+        })
+    </script>
+</body>
+
+</html>

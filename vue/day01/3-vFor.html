@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for</title>
+  <!-- 引入vue -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul > 
+      <li v-for="item in list" v-bind:key="item.id">
+        {{item.name}}
+      </li>
+    </ul>
+    <ul v-for="(value,key,index) in obj">
+      <li>{{value}}:{{key}}---{{index}}</li>
+    </ul>
+  </div>
+  <script>
+    // vue的JS代码
+    let vm = new Vue({
+      // 绑定模板
+      el:"#app",
+      data(){
+        return {
+          obj:{
+            name:'dex',
+            age:22,
+            gender:'male'
+          },
+          list:[{
+            id:1,
+            name:'tom'
+          },{
+            id:2,
+            name:'tom2'
+          },{
+            id:3,
+            name:'tom3'
+          }]
+        }
+      },
+      
+    })
+    // vm为vue的实例对象
+    console.log(vm)
+    // console.log(vm.msg)
+  </script>
+</body>
+</html>

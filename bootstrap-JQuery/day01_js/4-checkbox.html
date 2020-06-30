@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('button').click(function(){
+        var inp = $('div :checkbox:checked').attr('value');
+        alert(inp)
+      });
+    })
+  </script>
+</head>
+<body>
+  <button>获取值</button>
+  <div>
+    <input type="checkbox" id='sing' value="唱"><label for='sing'>唱</label>
+    <input type="checkbox" id='jump' value="跳"><label for='jump'>跳</label>
+    <input type="checkbox" id='rap' value="rap"><label for='rap'>rap</label>
+  </div>
+
+</body>
+</html>

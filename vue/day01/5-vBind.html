@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for</title>
+  <!-- 引入vue -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div title="title">hello vue</div>
+    <div v-bind:title='title'>hello vue</div>
+    <div :title='title'>hello vue</div>
+  </div>
+  <script>
+    // vue的JS代码
+    let vm = new Vue({
+      // 绑定模板
+      el:"#app",
+      data(){
+        return {
+          title:'动态title'
+        }
+      },
+      methods:{
+
+      }
+      
+    })
+   
+  </script>
+</body>
+</html>

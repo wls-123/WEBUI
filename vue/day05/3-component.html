@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局与局部组件的区别/title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+      <wls-alert></wls-alert>
+      <wls-button></wls-button>
+    </div>
+    <div id="test">
+      {{msg}}
+      <wls-alert></wls-alert>
+      <wls-button></wls-button>
+    </div>
+    <script>
+        // 全局注册
+        Vue.component('wls-alert',{
+          template:`
+            <div>hello vue</div>
+          `
+        })
+        new Vue({
+            el: '#app',
+            // 局部注册
+            components:{
+              'wls-button':{
+                template:`
+                  <button :style='style'>点击</button>
+                `,
+                data(){
+                  return{
+                    style:{
+                      color:'#fff',
+                      'background-color':'rgb(64,158,255)',
+                      'font-size':'16px',
+                      padding:'0.5em 1.5em',
+                      border:0,
+                      
+                    }
+                  }
+                }
+              }
+            },
+            data() {
+                return {
+                
+                }
+            },
+            methods: {
+                  
+                }
+        })
+        new Vue({
+          el:'#test',
+          data:{
+            msg:'hello'
+          }
+        })
+    </script>
+</body>
+
+</html>

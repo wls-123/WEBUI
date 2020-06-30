@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义指令</title>
+   <!-- 引入vue -->
+   <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+   <!-- 引入css文件 -->
+   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div id="app">
+    <input type="text" placeholder="请输入" v-focus>
+    <input type="submit" value="确定" v-fontsize = '30'>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data(){
+        return{
+
+        }
+      },
+      directives:{
+        'focus':{
+          inserted:function(el){
+            el.focus()
+          },
+          'fontsize':function(el,binding){
+            el.style.fontsize = binding.value + 'px';
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

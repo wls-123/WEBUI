@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>选择器</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script>
+    $(function(){
+      var btn = $('button');
+      btn.click(function(){
+        var opt = $('select option:selected').text();
+       alert(opt);
+      })
+    });
+    
+  </script>
+</head>
+<body>
+  <button>获取值</button>
+  <select name="" id="">
+    <option value="">A</option>
+    <option value="">B</option>
+    <option value="">C</option>
+    <option value="">D</option>
+  </select>
+</body>
+</html>

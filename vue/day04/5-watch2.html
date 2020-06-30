@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <!-- 引入vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+      username: <input type="text" v-model='form.username'>
+      password: <input type="password" v-model='form.password'><br>
+      email: <input type="password" v-model='form.email'><br>
+      {{form}}------{{newForm}}
+
+      <!-- 只对对象中的某几项监听，其他属性改变时，不进行监听 -->
+      <!-- 在此处只监听username和password，而email发生改变时不监听 -->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            computed:{
+              newForm:function(){
+                return {username,password} = this.form;
+              }
+            },
+            // 监听器
+            watch:{
+              newForm:function(now,old){
+                console.log('now',now)
+                console.log('old',old)
+              }
+              
+            },
+            data() {
+                return {
+                 msg:"",
+                 form:{
+                   username:'',
+                   password:'',
+                   email:''
+                 }
+                }
+            },
+            methods: {
+                  
+                }
+        })
+    </script>
+</body>
+
+</html>
